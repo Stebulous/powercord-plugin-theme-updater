@@ -1,5 +1,4 @@
 import os
-import subprocess
 from time import sleep
 
 print("---> xxxcept | im gonna update your stuff")
