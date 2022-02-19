@@ -1,17 +1,24 @@
 import os
 from time import sleep
+from tkinter import Tk, filedialog
 
-print("---> xxxcept | im gonna update your stuff")
+print(r"Powercord Theme/Plugin Updater")
+
+root = Tk()
+root.withdraw()
+
+chosendir = filedialog.askdirectory(parent=root,initialdir="/",title='Please select your Powercord root directory')
 
 try:
-    if not os.path.exists(R"src\Powercord\plugins"):
-        raise NotADirectoryError("Failed to find powercord directory!")
-
-    if not os.path.exists(R"src\Powercord\themes"):
+    powercord_dir = os.path.join(chosendir, r"src\Powercord")
+    themes_dir = os.path.join(powercord_dir, "themes")
+    plugins_dir = os.path.join(powercord_dir, "plugins")
+    
+    if not (os.path.exists(themes_dir) and os.path.exists(plugins_dir)):
         raise NotADirectoryError("Failed to find powercord directory!")
 
     print("Updating Plugins...\n")
-    os.chdir("src\Powercord\plugins")
+    os.chdir(plugins_dir)
 
     for plugin in os.listdir():
         if plugin == ".exists":
@@ -25,7 +32,7 @@ try:
     os.chdir("..")
 
     print("Updating Themes...\n")
-    os.chdir("themes")
+    os.chdir(themes_dir)
 
     for theme in os.listdir():
         if theme == ".exists":
